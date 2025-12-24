@@ -153,6 +153,7 @@ public class RecipeRepository(CookbookDbContext context, IFileService fileServic
             await _fileService.DeleteFileAsync(existingRecipe.FileName);
         }
 
+        _context.RecipeIngredients.RemoveRange(existingRecipe.RecipeIngredients);
         _context.Recipes.Remove(existingRecipe);
         await _context.SaveChangesAsync();
     }
